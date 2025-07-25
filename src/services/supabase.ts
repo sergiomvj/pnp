@@ -1,10 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Configurações do Supabase - Substitua pelos valores reais do seu projeto
-const supabaseUrl = 'https://your-project-ref.supabase.co'
-const supabaseAnonKey = 'your-anon-key'
+// Configurações do Supabase usando variáveis de ambiente do Vite
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Tipos para TypeScript
 export interface User {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import ThemeToggle from '../ThemeToggle';
 import AuthModal from '../auth/AuthModal';
@@ -25,7 +26,7 @@ const Header: React.FC = () => {
             </div>
 
             {/* Navegação Principal */}
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden md:flex space-x-8 items-center">
               <a href="#" className="text-gray-900 dark:text-gray-100 hover:text-cambridge-blue dark:hover:text-sage font-medium transition-colors">
                 Home
               </a>
@@ -38,6 +39,12 @@ const Header: React.FC = () => {
               <a href="#" className="text-gray-900 dark:text-gray-100 hover:text-cambridge-blue dark:hover:text-sage font-medium transition-colors">
                 Sobre
               </a>
+              {/* Setup/Configuração - visível para todos por enquanto */}
+              <Link to="/setup" title="Configurações" className="ml-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <svg className="w-6 h-6 text-gray-500 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1.75a2.25 2.25 0 0 1 2.25 2.25v.38a8.25 8.25 0 0 1 2.1.87l.27-.27a2.25 2.25 0 1 1 3.18 3.18l-.27.27c.36.67.66 1.38.87 2.1h.38A2.25 2.25 0 0 1 22.25 12a2.25 2.25 0 0 1-2.25 2.25h-.38a8.25 8.25 0 0 1-.87 2.1l.27.27a2.25 2.25 0 1 1-3.18 3.18l-.27-.27a8.25 8.25 0 0 1-2.1.87v.38A2.25 2.25 0 0 1 12 22.25a2.25 2.25 0 0 1-2.25-2.25v-.38a8.25 8.25 0 0 1-2.1-.87l-.27.27a2.25 2.25 0 1 1-3.18-3.18l.27-.27a8.25 8.25 0 0 1-.87-2.1h-.38A2.25 2.25 0 0 1 1.75 12a2.25 2.25 0 0 1 2.25-2.25h.38a8.25 8.25 0 0 1 .87-2.1l-.27-.27a2.25 2.25 0 1 1 3.18-3.18l.27.27a8.25 8.25 0 0 1 2.1-.87v-.38A2.25 2.25 0 0 1 12 1.75zm0 5.5A4.75 4.75 0 1 0 12 18.75 4.75 4.75 0 0 0 12 7.25z" />
+                </svg>
+              </Link>
             </nav>
 
             {/* Botões de Ação */}

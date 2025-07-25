@@ -13,6 +13,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [nickname, setNickname] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   
   const { signIn, signUp, signInWithGoogle } = useAuth()
 
@@ -22,6 +23,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault()
     setLoading(true)
     setError('')
+    setSuccess('')
 
     try {
       let result
@@ -34,6 +36,16 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           return
         }
         result = await signUp(email, password, nickname)
+        if (result.error) {
+          setError(result.error.message)
+        } else {
+          setSuccess('Cadastro realizado! Verifique seu e-mail para confirmar sua conta antes de fazer login.')
+          setEmail('')
+          setPassword('')
+          setNickname('')
+        }
+        setLoading(false)
+        return
       }
 
       if (result.error) {
@@ -94,6 +106,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         {error && (
           <div className="bg-red-100 dark:bg-red-900/20 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg mb-4">
             {error}
+          </div>
+        )}
+        {/* Success Message */}
+        {success && (
+          <div className="bg-green-100 dark:bg-green-900/20 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-400 px-4 py-3 rounded-lg mb-4">
+            {success}
           </div>
         )}
 
